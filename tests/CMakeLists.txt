@@ -25,3 +25,5 @@ endif()
 set(TESTS tests.c)
 
 add_executable(run_tests ${TESTS})
+
+target_link_libraries(run_tests PRIVATE cmocka)
