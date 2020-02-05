@@ -1,0 +1,7 @@
+version: 1.0.{build}
+image: debian:stretch
+build_script:
+- sh: apt-get update && apt-get install -y sudo git gcc g++ build-essential cmake && rm -rf /var/lib/apt/lists/*
+- sh: cd tests/cmocka && mkdir build && cd build && cmake -DCMAKE_INSTALL_PREFIX=/usr .. && make && sudo make install && cd ../..
+test_script:
+- sh: bash run-tests.sh
