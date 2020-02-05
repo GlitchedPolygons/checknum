@@ -25,6 +25,23 @@ static void null_test_success(void** state)
     (void)state;
 }
 
+static void test_zeros(void** state)
+{
+    assert_int_equal(checknum("0.00000", 0), 2);
+    assert_int_equal(checknum("0", 0), 1);
+    assert_int_equal(checknum("00", 0), 0);
+    assert_int_equal(checknum("0  ", 0), 1);
+    assert_int_equal(checknum("  0", 0), 1);
+    assert_int_equal(checknum("  0  ", 0), 1);
+    assert_int_equal(checknum(" 0123", 0), 0);
+    assert_int_equal(checknum(".0 ", 0), 2);
+    assert_int_equal(checknum(".00", 0), 2);
+    assert_int_equal(checknum(" .   ", 0), 0);
+    assert_int_equal(checknum("0.", 0), 2);
+    assert_int_equal(checknum("+.", 0), 0);
+    assert_int_equal(checknum("-.   ", 0), 0);
+}
+
 // --------------------------------------------------------------------------------------------------------------
 
 int main(void)
@@ -32,6 +49,7 @@ int main(void)
     const struct CMUnitTest tests[] = 
     {
         cmocka_unit_test(null_test_success),
+        cmocka_unit_test(test_zeros),
     };
 
     return cmocka_run_group_tests(tests, NULL, NULL);
