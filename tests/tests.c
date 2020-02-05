@@ -42,14 +42,53 @@ static void test_zeros(void** state)
     assert_int_equal(checknum("-.   ", 0), 0);
 }
 
+static void test_integers(void** state)
+{
+    assert_int_equal(checknum("420", 0), 1);
+    assert_int_equal(checknum("941L", 0), 0);
+    assert_int_equal(checknum("0666", 0), 0);
+    assert_int_equal(checknum("-42", 0), 1);
+    assert_int_equal(checknum("-42-", 0), 0);
+    assert_int_equal(checknum("--42", 0), 0);
+    assert_int_equal(checknum("-+42", 0), 0);
+    assert_int_equal(checknum("+42", 0), 1);
+    assert_int_equal(checknum("++42", 0), 0);
+    assert_int_equal(checknum("+ 42", 0), 0);
+    assert_int_equal(checknum("- 42", 0), 0);
+    assert_int_equal(checknum("   1337 ", 1), 0);
+    assert_int_equal(checknum("4256337 ", 0), 1);
+    assert_int_equal(checknum("fdfdx5865jnw", 0), 0);
+    assert_int_equal(checknum("-54141375154", 0), 1);
+    assert_int_equal(checknum(" +9946731546733", 0), 1);
+}
+
+static void test_floats(void** state)
+{
+    assert_int_equal(checknum(" 1337.420    ", 0), 2);
+    assert_int_equal(checknum(".2579000   ", 0), 2);
+    assert_int_equal(checknum("  0.04e-9000", 0), 2);
+    assert_int_equal(checknum(" 42.01E+92  ", 0), 2);
+    assert_int_equal(checknum("  .0 ", 0), 2);
+    assert_int_equal(checknum(" .2E-3   ", 0), 2);
+    assert_int_equal(checknum(".2E-3", 0), 2);
+    assert_int_equal(checknum("   .2E-32 ", 0), 2);
+    assert_int_equal(checknum(".7E", 0), 0);
+    assert_int_equal(checknum(" .       ", 0), 0);
+    assert_int_equal(checknum("0.       ", 0), 2);
+    assert_int_equal(checknum("7.       ", 0), 2);
+    assert_int_equal(checknum("+.       ", 0), 0);
+    assert_int_equal(checknum("-.       ", 0), 0);
+}
+
 // --------------------------------------------------------------------------------------------------------------
 
 int main(void)
 {
-    const struct CMUnitTest tests[] = 
-    {
+    const struct CMUnitTest tests[] = {
         cmocka_unit_test(null_test_success),
         cmocka_unit_test(test_zeros),
+        cmocka_unit_test(test_floats),
+        cmocka_unit_test(test_integers),
     };
 
     return cmocka_run_group_tests(tests, NULL, NULL);
