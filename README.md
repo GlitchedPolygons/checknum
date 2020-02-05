@@ -1,5 +1,6 @@
+[![AppVeyor](https://ci.appveyor.com/api/projects/status/ffxu9yrkm5dgkknm?svg=true)](https://ci.appveyor.com/project/GlitchedPolygons/checknum)
 [![CircleCI](https://circleci.com/gh/GlitchedPolygons/checknum/tree/master.svg?style=shield)](https://circleci.com/gh/GlitchedPolygons/checknum/tree/master)
-[![License Shield](https://img.shields.io/badge/license-Apache--2.0-brightgreen)](https://github.com/GlitchedPolygons/l8w8jwt/blob/master/LICENSE)
+[![License Shield](https://img.shields.io/badge/license-Apache--2.0-orange)](https://github.com/GlitchedPolygons/l8w8jwt/blob/master/LICENSE)
 
 # Checknum
 ### Check whether a given C-string contains an integer or a floating-point number.
