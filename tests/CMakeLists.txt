@@ -16,11 +16,11 @@ cmake_minimum_required(VERSION 3.1)
 set(CMAKE_C_STANDARD 11)
 project(tests C)
 
-find_package(cmocka REQUIRED)
+if (WIN32 AND BUILD_SHARED_LIBS)
+    set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
+endif ()
 
-if(NOT ${cmocka_FOUND})
-	message("Unit testing framework 'cmocka' not found: please follow installation instructions at https://gitlab.com/cmocka/cmocka/blob/master/INSTALL.md")
-endif()
+add_subdirectory(cmocka cmocka)
 
 set(TESTS tests.c)
 
