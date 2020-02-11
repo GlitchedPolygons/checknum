@@ -18,7 +18,7 @@
 #include <stddef.h>
 #include <setjmp.h>
 #include <cmocka.h>
-#include "../checknum.h"
+#include "../include/checknum.h"
 
 static void null_test_success(void** state)
 {
