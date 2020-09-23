@@ -20,6 +20,8 @@
  *  @brief Check whether a given string contains an integer or floating point number.
  */
 
+/* https://github.com/GlitchedPolygons/checknum */
+
 #ifndef CHECKNUM_H
 #define CHECKNUM_H
 
